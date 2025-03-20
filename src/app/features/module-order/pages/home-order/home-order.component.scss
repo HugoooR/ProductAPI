@@ -1,0 +1,42 @@
+#home-order {
+    display: flex;
+    flex-direction: column;
+}
+
+#home-header {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.modern-button {
+    background-color: #4c75af;
+    color: white;
+    font-size: 16px;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: fit-content;
+}
+
+.modern-button:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.modern-button:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .modern-button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}

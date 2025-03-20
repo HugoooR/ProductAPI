@@ -1,0 +1,56 @@
+<div class="max-w-4xl w-full mx-auto mt-10 p-6 bg-white shadow-lg rounded-2xl border border-gray-200">
+
+    <!-- Header avec retour -->
+    <div class="flex justify-between items-center border-b pb-4">
+        <button routerLink="/order"
+                class="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-blue-600 hover:text-white transition shadow">
+            <span class="text-lg">←</span>
+            <span class="font-medium">Retour</span>
+        </button>
+        <h2 class="text-2xl font-semibold text-gray-800">Commande #{{ order?.id }}</h2>
+    </div>
+
+    <!-- Informations de la commande -->
+    <div class="mt-6">
+        <p class="text-gray-500 text-sm"><span class="font-semibold text-gray-700">Date :</span> {{ order?.date | date:'EEEE, d MMMM, y' }}</p>
+        <p class="text-gray-500 text-sm"><span class="font-semibold text-gray-700">Client ID :</span> {{ order?.clientId }}</p>
+    </div>
+
+    <!-- Liste des Produits commandés + Total -->
+    <div class="mt-6 border-t pt-4">
+        <h3 class="text-lg font-semibold text-gray-700 mb-3">Produits commandés</h3>
+        <div class="bg-gray-100 rounded-lg p-4">
+            <table class="w-full border-collapse">
+                <thead>
+                <tr class="text-left text-gray-700 border-b">
+                    <th class="py-2">Produit</th>
+                    <th class="py-2 text-center">Quantité</th>
+                    <th class="py-2 text-right">Prix Unitaire</th>
+                    <th class="py-2 text-right">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let op of order?.orderProducts; let last = last"
+                    [ngClass]="{'border-b': !last}">
+                    <td class="py-3">
+                        <span class="font-medium text-gray-800">{{ op.product?.name }}</span>
+                        <p class="text-sm text-gray-500">{{ op.product?.description }}</p>
+                    </td>
+                    <td class="py-3 text-center">{{ op.quantity }}</td>
+                    <td class="py-3 text-right">{{ op.product?.price | currency:'EUR' }}</td>
+                    <td class="py-3 text-right">
+                        {{ (op.product?.price ?? 0) * (op.quantity ?? 1) | currency:'EUR' }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- Bordure au-dessus du total, harmonisée avec le tableau -->
+            <div class="mt-4 pt-4 border-t border-gray-300 flex justify-end">
+                <p class="text-lg font-semibold text-gray-800">
+                    <span class="text-gray-700">Total :</span> {{ order?.totalPrice | currency:'EUR' }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div id="home-client" class="p-6">
+    <!-- Header avec le bouton -->
+    <div id="home-header" class="mb-6">
+        <button (click)="openModal()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition modern-button">
+            Créer une commande
+        </button>
+    </div>
+
+    <app-list-order></app-list-order>
+</div>
+
+<app-order-form-modal
+    [isOpen]="isModalCreateOpen"
+    (close)="closeModal()"
+    (submitOrder)="submitOrder($event)">
+</app-order-form-modal>

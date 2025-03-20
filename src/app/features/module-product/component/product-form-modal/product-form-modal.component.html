@@ -1,0 +1,57 @@
+<!-- MODAL (Popup) -->
+<div class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50" [class.hidden]="!isOpen">
+    <div class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-lg overflow-y-autogit remote add origin https://github.com/Alexis1663/market-project.git" style="max-height: 90%">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b pb-3">
+            <h2 class="text-xl font-semibold">
+                {{ productData ? 'Modifier le produit' : 'Créer un produit' }}
+            </h2>
+            <button (click)="closeModal()" class="text-gray-500 hover:text-gray-700">✕</button>
+        </div>
+
+        <!-- Formulaire -->
+        <form [formGroup]="productForm" (ngSubmit)="submitForm()" class="mt-4">
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700">Nom</label>
+                <input type="text" formControlName="name"
+                       class="w-full p-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700">Prix</label>
+                <input type="number" formControlName="price"
+                       class="w-full p-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700">Unitée en stock</label>
+                <input type="number" formControlName="unitInStock"
+                       class="w-full p-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700">Poids</label>
+                <input type="number" formControlName="weight"
+                       class="w-full p-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea type="text" formControlName="description"
+                          class="w-full p-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"></textarea>
+            </div>
+
+            <!-- Boutons -->
+            <div class="flex justify-end space-x-4 mt-4">
+                <button type="button" (click)="closeModal()"
+                        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
+                    Annuler
+                </button>
+                <button type="submit" [disabled]="!productForm.valid"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    {{ productData ? 'Modifier' : 'Enregistrer' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div id="home-client" class="p-6">
+    <!-- Header avec le bouton -->
+    <div id="home-header" class="mb-6">
+        <button (click)="openModal()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition modern-button">
+            Créer un client
+        </button>
+    </div>
+
+    <!-- Liste des clients -->
+    <app-list-client></app-list-client>
+
+    <app-client-form-modal
+        [isOpen]="isModalOpen"
+        (close)="closeModal()"
+        (submitClient)="submitClient($event)">
+    </app-client-form-modal>
+</div>

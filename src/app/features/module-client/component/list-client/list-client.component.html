@@ -1,0 +1,11 @@
+<div id="client-container" class="client-container">
+    <div *ngFor="let client of clients" class="client-card" [routerLink]="'/client/' + client.id">
+        <div class="card-header">
+            <h3>{{ client.firstName }}</h3>
+        </div>
+        <div class="card-body">
+            <p>Nom : {{ client.lastName }}</p>
+            <p>Date de naissance : {{ client.dateOfBirth | date:'EEEE, d MMMM, y'}}</p>
+        </div>
+    </div>
+</div>

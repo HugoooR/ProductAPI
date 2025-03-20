@@ -1,0 +1,6 @@
+:host {
+    display: block;
+    .avatar {
+        @apply w-20 h-20 rounded-full flex items-center justify-center bg-gray-300 text-gray-700 text-2xl font-bold;
+    }
+}

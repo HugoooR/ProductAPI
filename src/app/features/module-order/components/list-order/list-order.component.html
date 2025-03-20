@@ -1,0 +1,12 @@
+<div id="order-container" class="order-container">
+    <div *ngFor="let order of orders" class="client-card" [routerLink]="'/order/' + order.id">
+        <div class="card-header">
+            <h3>N°{{ order.id }}</h3>
+        </div>
+        <div class="card-body">
+            <p>Montant total : {{ order.totalPrice }} €</p>
+            <p>Poids total : {{ order.totalWeight }}</p>
+            <p>Nombre d'article : {{ order.numberOfArticles }}</p>
+        </div>
+    </div>
+</div>

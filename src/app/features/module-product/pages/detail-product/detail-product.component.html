@@ -1,0 +1,53 @@
+<div class="max-w-3xl w-full mx-auto mt-10 p-6 bg-white shadow-lg rounded-2xl border border-gray-200">
+
+    <!-- Bouton Retour -->
+    <div class="mb-4">
+        <button routerLink="/product"
+                class="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-blue-600 hover:text-white transition shadow">
+            <span class="text-lg">←</span>
+            <span class="font-medium">Retour</span>
+        </button>
+    </div>
+
+    <!-- Détails du Produit -->
+    <div class="flex items-center space-x-4">
+        <!-- Icône Produit -->
+        <div class="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center text-2xl font-bold text-gray-600">
+            📦
+        </div>
+
+        <!-- Infos -->
+        <div *ngIf="product">
+            <h2 class="text-2xl font-semibold text-gray-800">
+                {{ product.name }}
+            </h2>
+            <p class="text-gray-500 text-sm">Prix : {{ product.price | currency:'EUR' }}</p>
+            <p class="text-gray-500 text-sm">Stock : {{ product.unitInStock }} unités</p>
+            <p class="text-gray-500 text-sm">Poids : {{ product.weight ? product.weight + ' kg' : 'Non spécifié' }}</p>
+            <p class="text-gray-700 mt-2">Description :</p>
+            <p class="text-gray-500">{{ product.description || 'Aucune description disponible' }}</p>
+        </div>
+    </div>
+
+    <!-- Boutons Actions -->
+    <div class="mt-6 flex space-x-4">
+        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" (click)="openModal()">Modifier</button>
+        <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition" (click)="openConfirmModal()">Supprimer</button>
+    </div>
+</div>
+
+<!-- MODAL MODIFICATION -->
+<app-product-form-modal
+    [isOpen]="isModalOpen"
+    [productData]="product"
+    (close)="closeModal()"
+    (submitProduct)="updateProduct($event)">
+</app-product-form-modal>
+
+<!-- MODAL CONFIRMATION -->
+<app-confirm-modal
+    [isOpen]="isModalConfirmOpen"
+    message="Voulez-vous vraiment supprimer ce produit ?"
+    (confirm)="deleteProduct()"
+    (cancel)="closeConfirmModal()">
+</app-confirm-modal>
